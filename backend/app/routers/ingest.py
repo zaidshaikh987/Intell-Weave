@@ -114,6 +114,13 @@ def ingest_url(body: UrlIn, db: Session = Depends(get_db)):
     # persist
     aid = f"art_{abs(hash(canonical_url))}"
     analysis = nlp.analyze(body_text)
+    
+    # Use analysis results to override basic extraction
+    if analysis.get('reading_time'):
+        reading_time = analysis['reading_time']
+    if analysis.get('language'):
+        language = analysis['language']
+    
     try:
         db.execute(
             pg_insert(articles)
@@ -130,6 +137,7 @@ def ingest_url(body: UrlIn, db: Session = Depends(get_db)):
                 tags=tags,
                 reading_time=reading_time,
                 published_at=pub,
+                image_url=image_url,
             )
             .on_conflict_do_nothing(index_elements=[articles.c.id])
         )
@@ -145,7 +153,9 @@ def ingest_url(body: UrlIn, db: Session = Depends(get_db)):
                 sentiment=analysis.get('sentiment'),
                 key_entities=analysis.get('entities'),
                 topics=analysis.get('keyphrases'),
-                credibility_score=70.0,
+                credibility_score=analysis.get('credibility_score', 70.0),
+                language=analysis.get('language'),
+                word_count=analysis.get('word_count'),
             )
             .on_conflict_do_nothing(index_elements=[article_nlp.c.article_id])
         )

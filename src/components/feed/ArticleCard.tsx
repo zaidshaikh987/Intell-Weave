@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Button from '@/components/ui/button';
 import Badge from '@/components/ui/badge';
 import { BookmarkedArticle, ArticleType } from '@/entities/all';
-import { Clock, User as UserIcon, TrendingUp, Play, Bookmark, BookmarkCheck, Share, ExternalLink, Eye, ThumbsUp, MessageCircle } from 'lucide-react';
+import { Clock, User as UserIcon, TrendingUp, Play, Bookmark, BookmarkCheck, Share, ExternalLink, Eye, ThumbsUp, MessageCircle, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
@@ -95,7 +95,10 @@ export default function ArticleCard({ article, index, user }: { article: Article
                   )}
                   {typeof article.credibility_score === 'number' && (
                     <Badge className={`text-xs ${article.credibility_score >= 80 ? 'bg-emerald-100 text-emerald-700' : article.credibility_score >= 60 ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}`}>
-                      <TrendingUp className="w-3 h-3 mr-1" /> {article.credibility_score}% credible
+                      {article.credibility_score >= 80 ? <CheckCircle className="w-3 h-3 mr-1" /> : 
+                       article.credibility_score >= 60 ? <AlertTriangle className="w-3 h-3 mr-1" /> : 
+                       <Shield className="w-3 h-3 mr-1" />}
+                      {article.credibility_score}% credible
                     </Badge>
                   )}
                   {article.sentiment && (

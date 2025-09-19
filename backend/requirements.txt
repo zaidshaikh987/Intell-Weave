@@ -35,6 +35,52 @@ python-docx==1.1.2
 pgvector==0.2.5
 elasticsearch==8.15.1
 
+# Advanced NLP and ML
+transformers==4.44.2
+torch==2.1.0
+bertopic==0.16.4
+umap-learn==0.5.6
+hdbscan==0.8.29
+yake==0.4.8
+rake-nltk==1.0.6
+vaderSentiment==3.3.2
+simhash==2.1.2
+imagehash==4.3.1
+pytesseract==0.3.13
+opencv-python==4.10.0.84
+Pillow==10.4.0
+
+# Audio/Video processing
+pydub==0.25.1
+gTTS==2.5.3
+moviepy==1.0.3
+librosa==0.10.2.post1
+
+# Additional ML/AI
+openai>=1.54.0
+chromadb==0.5.15
+faiss-cpu==1.8.0.post1
+langchain>=0.3.7
+langchain-community>=0.3.7
+langchain-openai>=0.2.8
+
+# Enhanced web scraping
+scrapy==2.11.2
+scrapy-splash==0.8.0
+feedparser==6.0.11
+newspaper3k==0.2.8
+
+# Security and auth
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+slowapi==0.1.9
+
+# Caching and queues
+celery==5.4.0
+kombu==5.4.2
+flower==2.0.1
+
 # Observability
 sentry-sdk==2.14.0
 prometheus-client==0.21.0
+structlog==24.4.0

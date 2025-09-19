@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Input from '@/components/ui/input';
 import Textarea from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Upload as UploadIcon, FileText, Link as LinkIcon, Sparkles, AlertCircle, Brain, Clock } from 'lucide-react';
+import { Upload as UploadIcon, FileText, Link as LinkIcon, Sparkles, AlertCircle, Brain, Clock, Image, Video, Headphones, Mic } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -17,7 +17,7 @@ import api from '@/api/client';
 
 export default function UploadPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'file'|'url'|'manual'>('file');
+  const [activeTab, setActiveTab] = useState<'file'|'url'|'manual'|'media'>('file');
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState('');
@@ -125,9 +125,18 @@ export default function UploadPage() {
           <Card className="border-none shadow">
             <CardHeader className="bg-gray-50">
               <div className="flex items-center justify-center gap-4 mb-2">
-                <button onClick={() => setActiveTab('file')} className={`px-4 py-2 rounded ${activeTab==='file' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>Upload File</button>
-                <button onClick={() => setActiveTab('url')} className={`px-4 py-2 rounded ${activeTab==='url' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>From URL</button>
-                <button onClick={() => setActiveTab('manual')} className={`px-4 py-2 rounded ${activeTab==='manual' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>Manual Entry</button>
+                <button onClick={() => setActiveTab('file')} className={`px-4 py-2 rounded ${activeTab==='file' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>
+                  <FileText className="w-4 h-4 mr-2 inline" />Upload File
+                </button>
+                <button onClick={() => setActiveTab('url')} className={`px-4 py-2 rounded ${activeTab==='url' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>
+                  <LinkIcon className="w-4 h-4 mr-2 inline" />From URL
+                </button>
+                <button onClick={() => setActiveTab('manual')} className={`px-4 py-2 rounded ${activeTab==='manual' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>
+                  <Brain className="w-4 h-4 mr-2 inline" />Manual Entry
+                </button>
+                <button onClick={() => setActiveTab('media')} className={`px-4 py-2 rounded ${activeTab==='media' ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>
+                  <Image className="w-4 h-4 mr-2 inline" />Media
+                </button>
               </div>
             </CardHeader>
             <CardContent className="p-8">
@@ -135,6 +144,49 @@ export default function UploadPage() {
                 {activeTab==='file' && (<FileUpload onUpload={handleFileUpload} />)}
                 {activeTab==='url' && (<UrlUpload onSubmit={handleUrlUpload} />)}
                 {activeTab==='manual' && (<ManualUpload onSubmit={handleManualUpload} />)}
+                {activeTab==='media' && (
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
+                    <div className="text-center space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer">
+                          <Image className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                          <h3 className="font-semibold text-gray-900 mb-2">Upload Images</h3>
+                          <p className="text-sm text-gray-600">JPG, PNG, GIF up to 10MB</p>
+                          <p className="text-xs text-gray-500 mt-2">AI will extract text and analyze content</p>
+                        </div>
+                        
+                        <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-400 transition-colors cursor-pointer">
+                          <Video className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                          <h3 className="font-semibold text-gray-900 mb-2">Upload Videos</h3>
+                          <p className="text-sm text-gray-600">MP4, AVI, MOV up to 100MB</p>
+                          <p className="text-xs text-gray-500 mt-2">Extract keyframes and generate summaries</p>
+                        </div>
+                        
+                        <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-400 transition-colors cursor-pointer">
+                          <Headphones className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                          <h3 className="font-semibold text-gray-900 mb-2">Upload Audio</h3>
+                          <p className="text-sm text-gray-600">MP3, WAV, M4A up to 50MB</p>
+                          <p className="text-xs text-gray-500 mt-2">Transcribe and analyze speech content</p>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <Mic className="w-6 h-6 text-blue-600" />
+                          <div className="text-left">
+                            <h4 className="font-medium text-blue-900">AI-Powered Processing</h4>
+                            <p className="text-sm text-blue-700">Our AI will automatically extract text from images, transcribe audio, analyze video content, and generate intelligent summaries.</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <Button className="bg-purple-600 text-white hover:bg-purple-700">
+                        <UploadIcon className="w-4 h-4 mr-2" />
+                        Choose Media Files
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </CardContent>
           </Card>

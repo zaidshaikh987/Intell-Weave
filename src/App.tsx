@@ -5,6 +5,10 @@ import DiscoverPage from '@/pages/DiscoverPage';
 import SearchPage from '@/pages/SearchPage';
 import BookmarksPage from '@/pages/BookmarksPage';
 import ArticlePage from '@/pages/ArticlePage';
+import ChatPage from '@/pages/ChatPage';
+import AnalyticsPage from '@/pages/AnalyticsPage';
+import MediaPage from '@/pages/MediaPage';
+import VerificationPage from '@/pages/VerificationPage';
 import AppLayout from '@/components/layout/AppLayout';
 
 export default function App() {
@@ -18,6 +22,10 @@ export default function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/article" element={<ArticlePage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/media" element={<MediaPage />} />
+        <Route path="/verification" element={<VerificationPage />} />
       </Route>
       <Route path="*" element={<div style={{padding:24}}>Not Found</div>} />
     </Routes>

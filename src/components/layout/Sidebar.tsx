@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Compass, Search, Upload, Bookmark, UserCircle2, Newspaper } from 'lucide-react';
+import { Home, Compass, Search, Upload, Bookmark, UserCircle2, Newspaper, MessageCircle, BarChart3, Play, Shield } from 'lucide-react';
 import AuthControl from '@/components/auth/AuthControl';
 
 const navItemBase = 'flex items-center gap-3 px-3 py-2 rounded-md font-semibold transition-all border';
@@ -32,8 +32,12 @@ export default function Sidebar() {
         <NavItem to="/feed" icon={Home} label="Feed" />
         <NavItem to="/discover" icon={Compass} label="Discover" />
         <NavItem to="/search" icon={Search} label="Search" />
+        <NavItem to="/chat" icon={MessageCircle} label="Ask AI" />
         <NavItem to="/upload" icon={Upload} label="Upload" />
         <NavItem to="/bookmarks" icon={Bookmark} label="Bookmarks" />
+        <NavItem to="/analytics" icon={BarChart3} label="Analytics" />
+        <NavItem to="/media" icon={Play} label="Media" />
+        <NavItem to="/verification" icon={Shield} label="Fact Check" />
       </nav>
 
       <div className="mt-auto">

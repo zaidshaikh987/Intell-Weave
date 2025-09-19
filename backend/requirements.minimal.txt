@@ -1,0 +1,27 @@
+# Minimal requirements for basic functionality
+fastapi==0.114.2
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+pydantic-settings==2.5.2
+SQLAlchemy==2.0.35
+psycopg[binary]==3.2.3
+alembic==1.13.2
+redis==5.0.8
+boto3==1.35.25
+python-multipart==0.0.12
+requests==2.32.3
+python-dotenv==1.0.1
+PyJWT==2.9.0
+
+# Basic NLP
+langdetect==1.0.9
+beautifulsoup4==4.12.3
+lxml==5.3.0
+readability-lxml==0.8.1
+
+# Vector search
+pgvector==0.2.5
+
+# Security
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0

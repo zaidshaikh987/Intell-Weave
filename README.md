@@ -1,4 +1,4 @@
-# 🧠 Intell Weave — AI News Aggregator
+Intell Weave — AI News Aggregator
 
 > Weaving intelligence into every story.
 
@@ -165,13 +165,21 @@ Welcome to Intell Weave! This repository contains a scalable, production-minded 
   . .venv/Scripts/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
   pip install -r backend/requirements.txt
 
-  # copy and edit env
-  cp backend/.env.example backend/.env
+# Download required spaCy models
+python -m spacy download en_core_web_sm
+python -m spacy download es_core_news_sm  # Optional: Spanish support
+python -m spacy download fr_core_news_sm  # Optional: French support
+python -m spacy download de_core_news_sm  # Optional: German support
 
-  # run dev server
-  uvicorn app.main:app --reload --port 8000 --app-dir backend/app
-  # Docs at: http://localhost:8000/docs
-  ```
+# Setup environment
+cp backend/.env.example backend/.env   # edit values
+
+# Apply database schema
+psql "$DATABASE_URL" -f backend/app/models/sql_ddl.sql
+
+# Start backend server
+uvicorn app.main:app --reload --port 8000 --app-dir backend/app
+```
 
 - **2) Frontend setup**
   ```bash
