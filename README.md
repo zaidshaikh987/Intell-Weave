@@ -2,6 +2,9 @@
 
 > Weaving intelligence into every story.
 
+<img width="1876" height="812" alt="image" src="https://github.com/user-attachments/assets/f0353471-0468-4f36-a376-fdf81bab24c0" />
+
+
 Welcome to Intell Weave! This repository contains a scalable, production-minded AI news aggregation platform that ingests, parses, analyzes (NLP/multimodal), and serves personalized feeds with explainable RAG chat — with an emphasis on reliability, performance, and developer ergonomics.
 
 
