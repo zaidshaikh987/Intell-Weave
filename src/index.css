@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App global styles to match the design */
+:root {
+  --border: 1px solid #000;
+}
+
+body {
+  @apply bg-white text-gray-900 antialiased;
+}
+
+.card-border {
+  border: 1px solid #000;
+}

@@ -1,0 +1,40 @@
+# Intell Weave Backend requirements
+# This file lists runtime dependencies for the FastAPI backend and NLP pipeline.
+# Install with: pip install -r requirements.txt
+
+fastapi==0.114.2
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+pydantic-settings==2.5.2
+SQLAlchemy==2.0.35
+psycopg[binary]==3.2.3
+alembic==1.13.2
+redis==5.0.8
+boto3==1.35.25
+python-multipart==0.0.12
+requests==2.32.3
+python-dotenv==1.0.1
+PyJWT==2.9.0
+
+# NLP (lightweight defaults; swap with heavier models as needed)
+langdetect==1.0.9
+spacy==3.7.6
+textblob==0.18.0.post0
+numpy==1.26.4
+scikit-learn==1.5.2
+sentence-transformers==3.2.1
+nltk==3.9.1
+beautifulsoup4==4.12.3
+lxml==5.3.0
+readability-lxml==0.8.1
+requests==2.32.3
+pdfminer.six==20231228
+python-docx==1.1.2
+
+# Search / Vector options (choose one; pgvector recommended for Postgres)
+pgvector==0.2.5
+elasticsearch==8.15.1
+
+# Observability
+sentry-sdk==2.14.0
+prometheus-client==0.21.0

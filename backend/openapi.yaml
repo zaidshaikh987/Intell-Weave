@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Intell Weave API
+  version: 0.1.0
+paths:
+  /auth/login:
+    post:
+      summary: Login and receive JWT token (demo)
+      responses:
+        '200': { description: OK }
+  /feed/personalized:
+    get:
+      summary: Personalized feed
+      parameters:
+        - in: query
+          name: user_id
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /article/{id}:
+    get:
+      summary: Get article by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
